@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class User(BaseModel):
@@ -8,6 +8,6 @@ class User(BaseModel):
     email: EmailStr
 
 class UserCreate(BaseModel):
-    name: str
-    age: int
+    name: str = Field(..., min_length=1, max_length=50)
+    age: int = Field(..., ge=0, le=120)
     email: EmailStr
